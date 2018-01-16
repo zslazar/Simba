@@ -1,0 +1,84 @@
+﻿@model BankOfSimba.ViewModels.AnimalViewModel
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Bank of Simba</title>
+</head>
+<body style="background-color:aquamarine">
+    <table style="width:20%">
+        <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Balance</th>
+            <th>AnimalType</th>
+            <th>Owner</th>
+            <th>SoulType</th>
+        </tr>
+        @foreach (var animals in @Model.AnimalList)
+            {
+            <tr>
+                <td>@Model.AnimalList.IndexOf(animals)</td>
+                <td>@animals.Name</td>
+                <td>@animals.Balance @animals.Currency</td>
+                <td>@animals.AnimalType</td>
+                @if (animals.Owner == true)
+                {
+                    <td style="color:darkgoldenrod">@animals.Owner</td>
+                }
+                else
+                {
+                    <td>@animals.Owner</td>
+                }
+
+                @*@switch (animals.SoulType)
+                    {
+                        case true:
+                            <td>Good Guy</td>
+                            break;
+                        case false:
+                            <td>Bad Guy</td>
+                            break;
+                    }*@
+
+                @if (animals.SoulType == true)
+                {
+                    <td>Good Guy</td>
+                }
+                else
+                {
+                    <td>Bad Guy</td>
+                }
+            </tr>
+        }
+    </table>
+    <br />
+    <form action="/list" method="post">
+        <input type="submit" value="Submit">
+    </form>
+
+    <form action="/add" method="post">
+        Name:<br />
+        <input type="text" name="Name" value="">
+        <br />
+        Balance:<br />
+        <input type="text" name="Balance" value="">
+        <br />
+        Currency:<br />
+        <input type="text" name="Currency" value="">
+        <br />
+        AnimalType:<br />
+        <input type="text" name="AnimalType" value="">
+        <br />
+        Owner:<br />
+        <input type="text" name="Owner" value="">
+        <br />
+        SoulType:<br />
+        <input type="text" name="SoulType" value="">
+        <br />
+        <br />
+        <input type="submit" value="Add new account">
+    </form>
+
+</body>
+</html>
